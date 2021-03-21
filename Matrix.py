@@ -41,17 +41,6 @@ class Matrix():
             sum = sum + (element[0] * element[1])
         return sum
 
-    def __add__(self, b_matrix: Matrix) -> Matrix:
-        if not (self.columns == b_matrix.columns and self.rows == b_matrix.rows):
-            raise ValueError
-        new_matrix = list()
-        for column_number in range(0, self.columns):
-            new_row = list()
-            for row_number in range(0, self.rows):
-                new_row.append(self.data[column_number][row_number] + b_matrix[column_number][row_number])
-            new_matrix.append(new_row)
-        return Matrix(new_matrix)
-
     def __multiply_operator(self, multiplikator) -> Matrix:
         '''
         multiply with other Matrix, Scalar or other factors
@@ -83,6 +72,17 @@ class Matrix():
             return Matrix(new_matrix)
         else:
             raise NotImplementedError
+
+    def __add__(self, b_matrix: Matrix) -> Matrix:
+        if not (self.columns == b_matrix.columns and self.rows == b_matrix.rows):
+            raise ValueError
+        new_matrix = list()
+        for column_number in range(0, self.columns):
+            new_row = list()
+            for row_number in range(0, self.rows):
+                new_row.append(self.data[column_number][row_number] + b_matrix[column_number][row_number])
+            new_matrix.append(new_row)
+        return Matrix(new_matrix)
 
     def __mul__(self, b_matrix: Matrix) -> Matrix:
         return self.__multiply_operator(b_matrix)
