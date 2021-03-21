@@ -3,7 +3,7 @@ Class to add mathematical matrix functions in Python
 '''
 
 class Matrix():
-    def __init__(self, matrix: list) -> Matrix:
+    def __init__(self, matrix: list):
         '''
         A matrix initialsed as a list or list of lists.
         Each list represents a column of a matrix.
