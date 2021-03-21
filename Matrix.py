@@ -79,5 +79,13 @@ class Matrix():
                             )
                         )
                     )
+                new_matrix.append(new_column)
+            return Matrix(new_matrix)
         else:
             raise NotImplementedError
+
+    def __mul__(self, b_matrix: Matrix) -> Matrix:
+        return self.__multiply_operator(b_matrix)
+
+    def __rmul__(self, b_matrix) -> Matrix:
+        return self.__multiply_operator(b_matrix)
