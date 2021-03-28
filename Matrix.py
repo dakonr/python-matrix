@@ -93,10 +93,3 @@ class Matrix():
     def print(self):
         for column in self.data:
             print(column)
-
-if __name__ == '__main__':
-    test_matrix = Matrix([[1, 2, 3], [1, 2, 3],[1, 2, 3]])
-    norm_matrix = Matrix([[0, 0, 1], [0, 1, 0],[1, 0, 0]])
-    print(test_matrix.data)
-    test_matrix = norm_matrix * test_matrix
-    test_matrix.print()
