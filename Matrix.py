@@ -80,7 +80,7 @@ class Matrix():
         for column_number in range(0, self.columns):
             new_row = list()
             for row_number in range(0, self.rows):
-                new_row.append(self.data[column_number][row_number] + b_matrix[column_number][row_number])
+                new_row.append(self.data[column_number][row_number] + b_matrix.data[column_number][row_number])
             new_matrix.append(new_row)
         return Matrix(new_matrix)
 
