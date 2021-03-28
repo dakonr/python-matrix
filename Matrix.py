@@ -27,7 +27,7 @@ class Matrix():
                     #add the number of columns
                     self.columns = self.columns +1
             #add the number of rows to the functions
-            self.rows = len(self.data[0]) + 1
+            self.rows = len(self.data[0])
 
     def __helper_matrixmultiply(self, zip_content: list) -> float:
         '''
@@ -41,7 +41,7 @@ class Matrix():
             sum = sum + (element[0] * element[1])
         return sum
 
-    def __multiply_operator(self, multiplikator) -> Matrix:
+    def __multiply_operator(self, multiplikator):
         '''
         multiply with other Matrix, Scalar or other factors
         '''
@@ -64,7 +64,7 @@ class Matrix():
                         self.__helper_matrixmultiply(
                             zip(
                                 [self.data[a_row][i] for i in range(0, self.columns)],
-                                [multiplikator[b_column][j] for j in range(0, multiplikator.rows)]
+                                [multiplikator.data[b_column][j] for j in range(0, multiplikator.rows)]
                             )
                         )
                     )
@@ -73,7 +73,7 @@ class Matrix():
         else:
             raise NotImplementedError
 
-    def __add__(self, b_matrix: Matrix) -> Matrix:
+    def __add__(self, b_matrix):
         if not (self.columns == b_matrix.columns and self.rows == b_matrix.rows):
             raise ValueError
         new_matrix = list()
@@ -84,8 +84,19 @@ class Matrix():
             new_matrix.append(new_row)
         return Matrix(new_matrix)
 
-    def __mul__(self, b_matrix: Matrix) -> Matrix:
+    def __mul__(self, b_matrix):
         return self.__multiply_operator(b_matrix)
 
-    def __rmul__(self, b_matrix) -> Matrix:
+    def __rmul__(self, b_matrix):
         return self.__multiply_operator(b_matrix)
+    
+    def print(self):
+        for column in self.data:
+            print(column)
+
+if __name__ == '__main__':
+    test_matrix = Matrix([[1, 2, 3], [1, 2, 3],[1, 2, 3]])
+    norm_matrix = Matrix([[0, 0, 1], [0, 1, 0],[1, 0, 0]])
+    print(test_matrix.data)
+    test_matrix = norm_matrix * test_matrix
+    test_matrix.print()
